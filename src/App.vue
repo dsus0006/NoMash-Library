@@ -1,22 +1,33 @@
 <script setup>
-import JSONLab from './components/JSONLab.vue'
 import BHeader from './components/BHeader.vue'
-import LibraryRegistrationForm from './components/LibraryRegistrationForm.vue'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header>
-    <BHeader />
-  </header>
+  <div class="mt-5">
+    <div class="main-container">
+      <header>
+        <BHeader/>
+      </header>
 
-  <main>
-    <LibraryRegistrationForm />
-    <!-- <JSONLab /> -->
-  </main>
+      <main class="main-box mt-5">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-12 col-lg-10 col-xl-8">
+              <!-- <LibraryRegistrationForm /> -->
+              <!-- <JSONLab /> -->
+              <router-view></router-view>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
 </template>
 
 <style scoped>
-/* header {
+header {
   line-height: 1.5;
 }
 
@@ -41,5 +52,5 @@ import LibraryRegistrationForm from './components/LibraryRegistrationForm.vue'
     place-items: flex-start;
     flex-wrap: wrap;
   }
-} */
+}
 </style>
