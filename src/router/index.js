@@ -3,8 +3,9 @@ import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import FirebaseSigninView from '@/views/FirebaseSigninView.vue'
 import FirebaseRegisterView from '@/views/FirebaseRegisterView.vue'
-import { auth } from '@/firebase/firebase'
+import { auth } from '@/firebase/init'
 import { onAuthStateChanged } from 'firebase/auth'
+import AddBookView from '@/views/AddBookView.vue'
 
 const routes = [
   {
@@ -16,6 +17,16 @@ const routes = [
     path: '/about',
     name: 'About',
     component: AboutView
+  },
+  {
+    path: '/addbook',
+    name: 'AddBook',
+    component: AddBookView
+  },
+  {
+    path: '/findbook',
+    name: 'FindBook',
+    component: () => import('@/views/FindBookView.vue')
   },
   {
     path: '/FireRegister',
@@ -43,7 +54,7 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     async beforeEnter(to, from, next) {
-      const { auth } = await import('@/firebase/firebase')
+      const { auth } = await import('@/firebase/init')
       const { onAuthStateChanged } = await import('firebase/auth')
 
       const user = auth.currentUser || await new Promise((r) => {
