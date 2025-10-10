@@ -6,6 +6,7 @@ import FirebaseRegisterView from '@/views/FirebaseRegisterView.vue'
 import { auth } from '@/firebase/init'
 import { onAuthStateChanged } from 'firebase/auth'
 import AddBookView from '@/views/AddBookView.vue'
+import GetBookCountView from '@/views/GetBookCountView.vue'
 
 const routes = [
   {
@@ -27,6 +28,11 @@ const routes = [
     path: '/findbook',
     name: 'FindBook',
     component: () => import('@/views/FindBookView.vue')
+  },
+  {
+    path: '/GetBookCount',
+    name: 'GetBookCount',
+    component: GetBookCountView
   },
   {
     path: '/FireRegister',
