@@ -1,16 +1,11 @@
-<script setup>
-import BHeader from './components/BHeader.vue'
-import { RouterView } from 'vue-router'
-</script>
-
 <template>
   <div class="mt-5">
     <div class="main-container">
-      <header>
+      <header v-if="showHeader">
         <BHeader/>
       </header>
 
-      <main class="main-box mt-5">
+      <main v-if="showHeader" class="main-box mt-5">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-12 col-lg-10 col-xl-8">
@@ -21,10 +16,30 @@ import { RouterView } from 'vue-router'
           </div>
         </div>
       </main>
+
+      <main v-else>
+        <router-view />
+      </main>
+
     </div>
   </div>
 
 </template>
+
+<script>
+import BHeader from './components/BHeader.vue';
+
+export default {
+  name: 'App',
+  components: { BHeader },
+  computed: {
+    showHeader() {
+      const noHeader = ['CountBookAPI', 'GetAllBookAPI']
+      return !noHeader.includes(this.$route.name)
+    }
+  }
+};
+</script>
 
 <style scoped>
 header {

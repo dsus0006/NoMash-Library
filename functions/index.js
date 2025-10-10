@@ -48,3 +48,17 @@ exports.countBooks = onRequest((req, res) => {
     }
   });
 });
+
+exports.getAllBooks = onRequest((req, res) => {
+  cors(req, res, async () => {
+    try {
+      const snap = await admin.firestore().collection("books").get();
+      const books = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+      res.status(200).json({ count: books.length, books });
+    } catch (err) {
+      console.error('Error fetching all books:', err);
+      res.status(500).json({ error: 'Error fetching all books' });
+    }
+  });
+});
